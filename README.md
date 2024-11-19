@@ -69,6 +69,6 @@ Express.js
 MongoDB with Mongoose
 bcrypt for password hashing
 JWT for authentication
-dotenv for environment variable management
+dotenv for environment variable management.
 
 
