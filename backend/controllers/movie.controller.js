@@ -1,20 +1,28 @@
 const fetchFromTMDB = require("../services/tmdb.services.js");
 
 const getTrendingMovie = async (req, res) => {
-  try {
-    const data = await fetchFromTMDB(
-      "https://api.themoviedb.org/3/trending/movie/day?language=en-US"
-    );
-    const rendomMovie =
-      data.results[Math.floor(Math.random() * data.results?.length)];
-    res.json({
-      success: true,
-      content: rendomMovie,
-    });
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
-};
+    try {
+      console.log("Fetching trending movies...");
+      const data = await fetchFromTMDB(
+        "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1"
+      );
+  
+      if (!data || !data.results) {
+        throw new Error("No movies found in the TMDB response.");
+      }
+  
+      const randomMovie = data.results[Math.floor(Math.random() * data.results.length)];
+      res.json({
+        success: true,
+        content: randomMovie,
+      });
+    } catch (error) {
+      console.error("Error in getTrendingMovie:", error.message);
+      res.status(500).json({ success: false, message: error.message });
+    }
+  };
+  
+  
 
 const getMovieTrailers = async (req, res) => {
   const { id } = req.params;
@@ -31,6 +39,9 @@ const getMovieTrailers = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
+
+
 
 const getMovieDetails = async (req, res) => {
   const { id } = req.params;
