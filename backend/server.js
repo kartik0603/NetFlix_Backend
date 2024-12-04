@@ -21,6 +21,8 @@ app.use("/api/v1/movie", protectRoute, movieRoute);
 app.use("/api/v1/tv", protectRoute, tvRoute);
 app.use("/api/v1/search", protectRoute, searchRoute);
 
+app.get("/", (req, res) => res.send("Hello from the server"));
+
 app.use(express.json());
 
 app.listen(PORT, () => {
