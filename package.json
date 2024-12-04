@@ -2,9 +2,10 @@
   "name": "netflix-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "backend/server.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "node backend/server.js"
+    "dev": "node backend/server.js",
+    "start": "node server.js"
 
   },
   "keywords": [],
