@@ -1,74 +1,83 @@
-"# NetFlix_Backend" 
-.
+# NetFlix_Backend
+
+A robust backend for managing Netflix-like services, featuring user authentication, media search, and TV/movie management. Built using Node.js and Express.js, this project ensures secure and efficient operations with a focus on modular design and scalability.
+
+---
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Troubleshooting](#troubleshooting)
+- [License](#license)
+
+---
+
+## Introduction
+
+This backend service is designed for a Netflix-like application. It includes user authentication, media search, and management functionalities. The project emphasizes security through JWT-based authentication and efficient data handling using MongoDB.
+
+---
+
+## Features
+
+- **Secure User Authentication**:
+  - User sign-up with email and password validation.
+  - Password hashing using `bcrypt`.
+  - JWT-based session management with token storage in cookies.
+
+- **Media Management**:
+  - Support for movies and TV series.
+  - Media search functionality powered by TMDB API.
+
+- **Robust Configuration**:
+  - Environment variable management using `.env` files.
+  - Modular design for scalability and maintainability.
+
+---
+
+## Tech Stack
+
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: MongoDB with Mongoose
+- **Authentication**: JWT and bcrypt
+- **Utilities**: dotenv for environment variables
+
+---
+
+## Project Structure
+
+```plaintext
+NetFlix_Backend/
 ├── models/
 │   └── user.model.js         # Mongoose schema for users
 ├── routes/
-│   └
-    └── auth.route.js         # User-related routes
-    |── movie.route.js
-    |──search.route.js
-    |── tv.route.js
+│   ├── auth.route.js         # User authentication routes
+│   ├── movie.route.js        # Movie-related routes
+│   ├── search.route.js       # Media search routes
+│   ├── tv.route.js           # TV series routes
 ├── controllers/
-   └── auth.controller.js    # Signup, login, and logout logic
-    |──  movie.conroller.js
-    |──  search.routcontroller.js
-    |──  tv.controller.js
-    
+│   ├── auth.controller.js    # Handles signup, login, and logout
+│   ├── movie.controller.js   # Manages movie-related logic
+│   ├── search.controller.js  # Handles search operations
+│   ├── tv.controller.js      # Manages TV series logic
 ├── middleware/
-│   └──ProtectRoute.js    # Authentication middleware (optional)
+│   └── ProtectRoute.js       # Authentication middleware
 ├── utils/
-│   └── generateToken.js      # JWT token generation utility
+│   └── generateToken.js      # JWT generation utility
 ├── config/
-│   └── envVAR.js             # Environment variable configuration and database connection 
-    |── db.js 
-├── server.js                  # Entry point of the application
+│   ├── envVAR.js             # Environment variable configuration
+│   ├── db.js                 # MongoDB connection setup
+├── services/
+│   └── tmdb.js               # TMDB API data fetching service
+├── server.js                 # Application entry point
 ├── package.json              # Dependencies and scripts
-├── README.md                 # Documentation
-└── .env                      # Environment variables (not committed)
-├── services
-    ├──tmdb.js                # API Fetching Data
-
-
-    .ENV file
-    MONGO_URI=your-mongodb-connection-string
-    JWT_SECRET=your-jwt-secret
-    NODE_ENV=development
-    PORT=5000
-
-
-
-    User Authentication API
-This project is a User Authentication API built with Node.js and Express.js, featuring secure user sign-up, login, and logout functionalities. The application uses bcrypt for password hashing and JWT (JSON Web Tokens) for user authentication, storing the token in cookies.
-
-Features
-
-Secure User Sign-Up:
-Validates email, password, and username.
-Hashes passwords using bcrypt.
-Assigns a random profile picture during registration.
-
-JWT Authentication:
-Generates a JWT for authenticated users.
-Stores the token in cookies with secure settings.
-
-User Login:
-Verifies credentials using hashed passwords.
-Issues a new JWT upon successful login.
-
-User Logout:
-Clears the authentication cookie.
-
-Validation:
-Ensures all fields are provided.
-Verifies email format and password length.
-
-
-Tech Stack
-Node.js
-Express.js
-MongoDB with Mongoose
-bcrypt for password hashing
-JWT for authentication
-dotenv for environment variable management.
-
-
+├── .env                      # Environment variables (not committed)
+└── README.md                 # Documentation
