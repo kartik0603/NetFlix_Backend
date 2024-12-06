@@ -8,6 +8,10 @@ const  {
 	getTrendingMovie,
 } = require("../controllers/movie.controller.js");
 
+const protectRoute = require("../middleware/protectRoute.js");
+
+movieRoute.use(protectRoute);
+
 
 // movieRoute.get("/trending", getTrendingMovie );
 

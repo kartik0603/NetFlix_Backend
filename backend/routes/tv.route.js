@@ -10,6 +10,10 @@ const {
     getTvsByCategory,
   } = require("../controllers/tv.controllers.js");
 
+  const protectRoute = require("../middleware/protectRoute.js");
+
+  tvRoute.use(protectRoute);
+
 tvRoute.get("/trending", getTvsTrending);
 tvRoute.get("/:id/trailers", getTvsTrailers);
 tvRoute.get("/:id/details", getTvsDetails);
